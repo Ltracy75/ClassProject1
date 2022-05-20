@@ -6,7 +6,7 @@ namespace ClassProjectLibrary1
         {
         public int Id { get; set; } = 0;
 
-        public int ProjectId { get; set; } = 0;
+        public int ProjectsId { get; set; } = 0;
 
         public int ResourceID { get; set; } = 0;
         [StringLength(100)]
