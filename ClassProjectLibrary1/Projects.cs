@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClassProjectLibrary1
 {
-    internal class Projects
+    public class Projects
     {
 
         public int Id { get; set; }
