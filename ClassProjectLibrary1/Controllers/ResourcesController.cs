@@ -14,6 +14,18 @@ namespace ClassProjectLibrary1
         private AppDbContext _context = new AppDbContext();
 
 
+
+        public void RecordWork(Resources resources, int workid)
+            {
+             var work = _context.Works.FindAsync(workid);
+                if (work == null)
+                {
+                throw new Exception("You're dumb");
+                }
+
+
+            }
+
         #region GetUsers()
         public List<Resources> GetResources()
             {

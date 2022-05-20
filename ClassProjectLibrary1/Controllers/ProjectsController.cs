@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace ClassProjectLibrary1
             return _context.Projects.ToList();
         }
 
-        public Projects GetProject(int id)
+        public Projects? GetProject(int id)
         {
             return _context.Projects.Find(id)!;
         }
@@ -48,7 +49,7 @@ namespace ClassProjectLibrary1
 
         public void UpdateProject(Projects project)
         {
-            _context.Entry(project).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Entry(project).State = EntityState.Modified;
             var rowsAffected = _context.SaveChanges();
             if (rowsAffected != 1)
             {
