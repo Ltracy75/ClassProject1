@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GroupProjectLibrary
+namespace ClassProjectLibrary1
     {
     public class Work
         {
