@@ -14,7 +14,7 @@ namespace ClassProjectLibrary1
         public string Name { get; set; } = string.Empty;
         public int HoursPerDay { get; set; }
 
-        public int ProjectsId { get; set; }
+        public int? ProjectsId { get; set; }
         public virtual Projects? Projects { get; set; }
     }
 }

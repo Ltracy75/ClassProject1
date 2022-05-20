@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassProjectLibrary1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220520181126_fixed table")]
-    partial class fixedtable
+    [Migration("20220520183540_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +67,7 @@ namespace ClassProjectLibrary1.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("ProjectsId")
+                    b.Property<int?>("ProjectsId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -93,18 +93,10 @@ namespace ClassProjectLibrary1.Migrations
                     b.Property<int>("Hours")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ResourceID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ResourcesId")
+                    b.Property<int>("ResourcesId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectsId");
 
                     b.HasIndex("ResourcesId");
 
@@ -115,26 +107,18 @@ namespace ClassProjectLibrary1.Migrations
                 {
                     b.HasOne("ClassProjectLibrary1.Projects", "Projects")
                         .WithMany()
-                        .HasForeignKey("ProjectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjectsId");
 
                     b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("ClassProjectLibrary1.Work", b =>
                 {
-                    b.HasOne("ClassProjectLibrary1.Projects", "Projects")
-                        .WithMany()
-                        .HasForeignKey("ProjectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ClassProjectLibrary1.Resources", "Resources")
                         .WithMany()
-                        .HasForeignKey("ResourcesId");
-
-                    b.Navigation("Projects");
+                        .HasForeignKey("ResourcesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Resources");
                 });
