@@ -16,5 +16,7 @@ namespace ClassProjectLibrary1
 
         public int? ProjectsId { get; set; }
         public virtual Projects? Projects { get; set; }
+
+        public IEnumerable<Work>? Works { get; set; } 
     }
 }

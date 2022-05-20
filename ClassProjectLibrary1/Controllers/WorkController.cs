@@ -22,7 +22,7 @@ namespace ClassProjectLibrary1
         #endregion
 
         #region GetWork()
-        public Work GetResource(int id)
+        public Work GetWork(int id)
             {
             return _context.Works.Find(id);
             }
@@ -30,35 +30,44 @@ namespace ClassProjectLibrary1
 
 
         #region AddWork()
-        public Work AddUser(Work work)
+        public Work AddWork(Work work)
             {
             _context.Works.Add(work);
             var rowsAffected = _context.SaveChanges();
             if (rowsAffected != 1)
                 {
-                throw new Exception("AddUser Failed!");
+                throw new Exception("Add Failed!");
+                }
+            //adding hours of work to the project//
+            var res = _context.Resources.Find(work.ResourcesId);
+            var prj = _context.Projects.Find(res!.ProjectsId);
+            prj!.ActualHours += work.Hours;
+            rowsAffected = _context.SaveChanges();
+            if (rowsAffected != 1)
+                {
+                throw new Exception("Project work hours update Failed!");
                 }
             return work;
             }
         #endregion
 
         #region UpdateWork()
-        public void UpdateResources(Work work)
+        public void UpdateWork(Work work)
             {
             _context.Entry(work).State = EntityState.Modified;
             var rowsAffected = _context.SaveChanges();
             if (rowsAffected != 1)
                 {
-                throw new Exception("UpdateUser Failed");
+                throw new Exception("UpdateWork Failed");
                 }
             }
         #endregion
 
 
         #region DeleteWork()
-        public void DeleteResources(int id)
+        public void DeleteWork(int id)
             {
-            var work = GetResource(id);
+            var work = GetWork(id);
             if (work is null)
                 {
                 throw new Exception("User not found!");
