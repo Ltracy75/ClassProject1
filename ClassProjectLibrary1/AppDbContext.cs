@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace ClassProjectLibrary1
     {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
         {
-        AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        public AppDbContext() { }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Projects> Projects { get; set; }
 
@@ -18,5 +21,14 @@ namespace ClassProjectLibrary1
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) { }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        {
+            var connStr = @"server=localhost\sqlexpress;"
+            + "database=ClassProj;"
+            + "trustServerCertificate=true;"
+            + "trusted_connection=true;";
+            builder.UseSqlServer(connStr);
         }
+
+    }
     }
