@@ -14,5 +14,8 @@ namespace ClassProjectLibrary1
 
         public int Hours { get; set; } = 0;
 
+        public virtual Projects? Projects { get; set; }
+
+        public virtual Resources? Resources{ get; set; }
         }
     }
